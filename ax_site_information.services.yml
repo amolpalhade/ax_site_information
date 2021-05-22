@@ -1,0 +1,6 @@
+# Registering Event Subscriber for customizing site information form
+services:
+  ax_site_information.customize_site_information_subscriber:
+    class: Drupal\ax_site_information\Routing\AddSiteApiSubscriber
+    tags:
+      - { name: event_subscriber }
