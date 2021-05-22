@@ -1,0 +1,14 @@
+#this file is used to enable the Rest API.
+id: get_node_details
+plugin_id: get_node_details
+granularity: method
+dependencies:
+  enforced:
+    module:
+      - ax_site_information
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - basic_auth
