@@ -2,5 +2,5 @@ name: 'AX Site Information'
 type: module
 description: 'Custom module is used for altering the Site information form and fetch the node details depend on the Site API key'
 core: 8.x
-version: 8.x-1.1
+version: 8.x-1.2
 package: 'Custom'
