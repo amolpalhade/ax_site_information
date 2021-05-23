@@ -7,7 +7,7 @@ use Drupal\rest\ResourceResponse;
 use Drupal\ax_site_information\Controller\AxCustomNodeDetailsController;
 
 /**
- * Provides a Demo Resource
+ * Provides a Demo Resource.
  *
  * @RestResource(
  *   id = "get_node_details",
@@ -17,19 +17,23 @@ use Drupal\ax_site_information\Controller\AxCustomNodeDetailsController;
  *   }
  * )
  */
-
 class GetNodeDetialsResource extends ResourceBase {
+
   /**
-  * Responds to entity GET requests.
-  * @return \Drupal\rest\ResourceResponse
-  */
- public function get($requested_site_api,$requested_nid) {
-   // Calling the nodeDetailAPI function
-   $jsonresponse = AxCustomNodeDetailsController::nodeDetailAPI($requested_site_api,$requested_nid);
-   return new ResourceResponse($jsonresponse);
-   //return $jsonresponse;
- }
+   * Responds to entity GET requests.
+   */
+  public function get($requested_site_api, $requested_nid) {
+
+    // Calling the nodedetailapi function.
+    $jsonresponse = AxCustomNodeDetailsController::nodedetailapi($requested_site_api, $requested_nid);
+    return new ResourceResponse($jsonresponse);
+  }
+
+  /**
+   * Function to remove the permission and make API available for all users.
+   */
   public function permissions() {
     return [];
   }
+
 }
