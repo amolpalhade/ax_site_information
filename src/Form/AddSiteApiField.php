@@ -24,6 +24,7 @@ class AddSiteApiField extends SiteInformationForm {
       '#default_value' => $site_config->get('siteapikey') ?: 'No API Key yet',
       '#description' => t("Enter the API Key"),
     ];
+    // Modifying the Button label.
     $form['actions']['submit']['#value'] = t('Update Configuration');
     return $form;
   }

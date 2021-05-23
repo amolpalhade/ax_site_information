@@ -15,14 +15,16 @@ class AxCustomNodeDetailsController extends ControllerBase {
    * Function to fetch the details of Node.
    *
    * @param string $requested_site_api
-   *   Site API Key.
+   *   Requested Site API Key in URL.
    * @param int $requested_nid
-   *   Node Id.
+   *   Requested Node Id in URL.
+   *
+   * @return array
+   *   Response based on the input parameter.
    */
   public static function nodedetailapi($requested_site_api, $requested_nid) {
-    $data = [];
     $response = [];
-    // If Requested Site API and Resquested Nid is Not null than proceed.
+    // If Requested Site API and Requested Nid is not null then proceed.
     if ($requested_site_api != "" && $requested_nid != "") {
       // Fetching the siteapikey from Site information form.
       $site_config_site_api = \Drupal::config('system.site')->get('siteapikey');
@@ -31,13 +33,13 @@ class AxCustomNodeDetailsController extends ControllerBase {
         $data = "Invalid Site API Key";
       }
       else {
-        // Load the node which is sent in the URL.
+        // Load the node which is requested in the URL.
         $node = Node::load($requested_nid);
         // If node is present in the database than proceed.
         if (!empty($node)) {
           // Fetch the content type machine name.
           $node_type = $node->bundle();
-          // Check if node is of type "page".
+          // Check if node is of type "ax_custom_page".
           if ($node_type == "ax_custom_page") {
             $data = $node;
           }
