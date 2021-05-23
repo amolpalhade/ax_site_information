@@ -25,7 +25,7 @@ class AxCustomNodeDetailsController extends ControllerBase {
        $site_config_site_api = \Drupal::config('system.site')->get('siteapikey');
        // if requested Site API is not equal than stop execution
        if($requested_site_api != $site_config_site_api){
-         return new JsonResponse(array("error" => "Invalid Site API Key"), 200, ['Content-Type'=> 'application/json']);
+         $data = "Invalid Site API Key";
        }else{
          // Load the node which is sent in the URL
          $node = Node::load($requested_nid);
@@ -35,17 +35,19 @@ class AxCustomNodeDetailsController extends ControllerBase {
            $node_type = $node->bundle();
            // Check if node is of type "page"
            if($node_type == "ax_custom_page"){
-             return new JsonResponse($node->toArray(), 200, ['Content-Type'=> 'application/json']);
+             $data = $node;
            }else{
-             return new JsonResponse(array("error" => "access denied"), 401, ['Content-Type'=> 'application/json']);
+             $data = "Access Denied";
            }
          }else{
-           return new JsonResponse(array("error" => "Node not found"), 200, ['Content-Type'=> 'application/json']);
+           $data  = "Node Not Found";
          }
        }
      }else{
-       return new JsonResponse(array("error" => "No Site API Key or Nid Found in URL"), 200, ['Content-Type'=> 'application/json']);
+       $data = "No Site API Key or Nid Found in URL";
      }
+     $response['data'] = $data;
+     return $response;
   }
 }
 

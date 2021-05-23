@@ -26,8 +26,8 @@ class GetNodeDetialsResource extends ResourceBase {
  public function get($requested_site_api,$requested_nid) {
    // Calling the nodeDetailAPI function
    $jsonresponse = AxCustomNodeDetailsController::nodeDetailAPI($requested_site_api,$requested_nid);
-   //return new ResourceResponse($jsonresponse);
-   return $jsonresponse;
+   return new ResourceResponse($jsonresponse);
+   //return $jsonresponse;
  }
   public function permissions() {
     return [];
